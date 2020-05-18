@@ -16,6 +16,8 @@ Se recomienda tener una base de datos limpia con un usuario de base de datos cre
 
 Para inicial el proyecto, se debe clonar y configurar como cualquier proyecto Laravel: crear un archivo .env y configurar la base de datos, con la base de datos y el usuario creados con el script del proyecto o unos creados por su propia cuenta.
 
+El archivo .env además debe incluir la variable JWT_SECRET, requerido por la librería jwt-auth.
+
 Para arrancar el proyecto, se ejecuta el comando:
 `php artisan serve`
 
