@@ -1,5 +1,5 @@
 {
-    "name": "POC Laravel Auth",
+    "name": "marvinbarahona/poc-laravel-auth",
     "type": "project",
     "description": "Prueba de conceptos, con un proyecto Laravel usando diferentes librería para permitir una autenticación con JWT",
     "keywords": [
@@ -13,7 +13,8 @@
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "spatie/laravel-permission": "^3.12"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
