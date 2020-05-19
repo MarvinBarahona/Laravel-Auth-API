@@ -39,18 +39,21 @@ class PermissionsAndUsersSeeder extends Seeder
         $user = Factory(App\User::class)->create([
             'name' => 'Usuario general',
             'email' => 'test@example.com',
+            'password' => bcrypt('jyCT8TkggF7h1LkK3kbT')
         ]);
         $user->assignRole($role1);
 
         $user = Factory(App\User::class)->create([
             'name' => 'Usuario Admin',
             'email' => 'admin@example.com',
+            'password' => bcrypt('zPGbKq9MLWjnG17lCxLZ')
         ]);
         $user->assignRole($role2);
 
         $user = Factory(App\User::class)->create([
             'name' => 'Usuario Super Admin',
             'email' => 'superadmin@example.com',
+            'password' => bcrypt('i381laUnznz931eRpTC8')
         ]);
         $user->assignRole($role3);
     }
