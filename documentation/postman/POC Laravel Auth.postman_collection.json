@@ -34,9 +34,9 @@
 							"script": {
 								"id": "b80d5813-956c-4c78-a9ab-1ae70968f257",
 								"exec": [
-									"if(pm.response.code === 200){\r",
+									"if (pm.response.code === 200) {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.environment.set(\"token\", jsonData.access_token);\r",
+									"    pm.environment.set(\"token\", jsonData.data.access_token);\r",
 									"}"
 								],
 								"type": "text/javascript"
@@ -85,9 +85,9 @@
 							"script": {
 								"id": "355335f3-b705-485e-b4ac-3bd62e5a3592",
 								"exec": [
-									"if(pm.response.code === 200){\r",
+									"if (pm.response.code === 200) {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.environment.set(\"token\", jsonData.access_token);\r",
+									"    pm.environment.set(\"token\", jsonData.data.access_token);\r",
 									"}"
 								],
 								"type": "text/javascript"

@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Sametsahindogan\ResponseObjectCreator\ErrorResult;
+use Sametsahindogan\ResponseObjectCreator\ErrorService\ErrorBuilder;
+use Sametsahindogan\ResponseObjectCreator\SuccessResult;
 
 class AuthController extends Controller
 {
+
     /**
      * Create a new AuthController instance.
      *
@@ -27,7 +31,13 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
 
         if (! $token = auth('api')->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+
+            $errorBuilder = new ErrorBuilder();
+            return response()->json(new ErrorResult(
+                $errorBuilder->code(1)
+                    ->title("Unathorized")
+                    ->message('Email or password are wrong')
+            ), 401);
         }
 
         return $this->respondWithToken($token);
@@ -40,7 +50,22 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth()->user());
+        $user = auth()->user();
+
+        if($user){
+            return response()->json(new SuccessResult([
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email
+            ]));
+        } else {
+            $errorBuilder = new ErrorBuilder();
+            return response()->json(new ErrorResult(
+                $errorBuilder -> code(1)
+                    ->title("Unathorized")
+                    ->message("Prodive a valid token")
+            ), 401);
+        }
     }
 
     /**
@@ -52,7 +77,7 @@ class AuthController extends Controller
     {
         auth()->logout();
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return response()->json(new SuccessResult(['message' => 'Successfully logged out']));
     }
 
     /**
@@ -74,10 +99,10 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
-        return response()->json([
+        return response()->json( new SuccessResult([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60
-        ]);
+        ]));
     }
 }
