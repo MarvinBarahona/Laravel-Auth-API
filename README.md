@@ -16,14 +16,18 @@ Se recomienda tener una base de datos limpia con un usuario de base de datos cre
 
 Para inicial el proyecto, se debe clonar y configurar como cualquier proyecto Laravel: crear un archivo .env y configurar la base de datos, con la base de datos y el usuario creados con el script del proyecto o unos creados por su propia cuenta.
 
-El archivo .env además debe incluir la variable JWT_SECRET, requerido por la librería jwt-auth.
+El archivo .env además debe incluir:
+* La variable JWT_SECRET, requerido por la librería jwt-auth. Se usará para firmar los JWT creados.
+* Configurar los datos de conexión de Redis. Para este ejemplo, se usó una [instancia local](documentation/redis/Instalar%20Local.md), por lo que se configuró las variables REDIS_HOST y REDIS_PORT.
+
+El proyecto además incluye la [creación de usuarios](database/seeds/PermissionsAndUsersSeeder.php) de prueba, así que se deben correr las migraciones y los seeds con el comando: `php artisan migrate:fresh --seed`.
 
 Para arrancar el proyecto, se ejecuta el comando:
 `php artisan serve`
 
-_Nota: Recuerde que se deben realizar las migraciones para poder ejectuar el proyecto, con el comando `php artisan migrate`_
 
 ## Probar el proyecto
 El proyecto incluye [los archivos usados](documentation/postman) para realizar pruebas unitarias con Postman.
 
-
+## Desarrollo
+El proyecto ha sido desarrollado usando [Gitflow](https://datasift.github.io/gitflow/IntroducingGitFlow.html). Se configuró la herramienta [Girkraken](https://support.gitkraken.com/git-workflows-and-extensions/git-flow/) para facilitar esta gestión.
