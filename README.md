@@ -23,6 +23,7 @@ Para arrancar el proyecto, se ejecuta el comando:
 
 _Nota: Recuerde que se deben realizar las migraciones para poder ejectuar el proyecto, con el comando `php artisan migrate`_
 
-
+## Probar el proyecto
+El proyecto incluye [los archivos usados](documentation/postman) para realizar pruebas unitarias con Postman.
 
 
