@@ -19,20 +19,18 @@ class PermissionsAndUsersSeeder extends Seeder
 
         // Crear permisos
         Permission::create(['name' => 'listar algo']);
-        Permission::create(['name' => 'actualizar algo']);
         Permission::create(['name' => 'crear algo']);
         Permission::create(['name' => 'eliminar algo']);
 
         // Crear roles y asignar permisos
         $role1 = Role::create(['name' => 'general']);
         $role1->givePermissionTo('listar algo');
-        $role1->givePermissionTo('actualizar algo');
 
         $role2 = Role::create(['name' => 'admin']);
         $role2->givePermissionTo('crear algo');
         $role2->givePermissionTo('eliminar algo');
 
-        // El super-admin tiene permisos para todo
+        // El super-admin tiene permisos para todas las rutas
         $role3 = Role::create(['name' => 'super-admin']);
 
         // create demo users

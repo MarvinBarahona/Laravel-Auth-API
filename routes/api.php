@@ -14,9 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('auth')->group(function () {
+// Rutas de autenticación
+Route::prefix('auth')->group(function() {
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
+});
+
+
+// Rutas de prueba
+Route::prefix('algo')->group(function() {
+    Route::get('/', 'TestController@listarAlgo');
+    Route::post('/', 'TestController@crearAlgo');
+    Route::delete('/', 'TestController@eliminarAlgo');
 });

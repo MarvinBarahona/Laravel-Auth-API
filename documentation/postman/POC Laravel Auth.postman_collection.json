@@ -124,6 +124,72 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Algo",
+			"item": [
+				{
+					"name": "Listar algo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{poc-lavarel-auth-server}}/algo",
+							"host": [
+								"{{poc-lavarel-auth-server}}"
+							],
+							"path": [
+								"algo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear algo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campo\": \"prueba\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{poc-lavarel-auth-server}}/algo",
+							"host": [
+								"{{poc-lavarel-auth-server}}"
+							],
+							"path": [
+								"algo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar algo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{poc-lavarel-auth-server}}/algo",
+							"host": [
+								"{{poc-lavarel-auth-server}}"
+							],
+							"path": [
+								"algo"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"auth": {
