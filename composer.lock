@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "be38feb55687ce2409c8c67ae347fde7",
+    "content-hash": "4b56edacfd513d0cfe932d2cb0f44ca8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2080,6 +2080,42 @@
                 }
             ],
             "time": "2020-03-29T20:13:32+00:00"
+        },
+        {
+            "name": "sametsahindogan/response-object-creator",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sametsahindogan/response-object-creator.git",
+                "reference": "615f76527d73121c597aca1b83aa0aa4b4bcd22c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sametsahindogan/response-object-creator/zipball/615f76527d73121c597aca1b83aa0aa4b4bcd22c",
+                "reference": "615f76527d73121c597aca1b83aa0aa4b4bcd22c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sametsahindogan\\ResponseObjectCreator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "sametsahindogan",
+                    "email": "sametsahindogan@gmail.com"
+                }
+            ],
+            "description": "This package provide to standardized response objects for your API.",
+            "time": "2020-01-21T12:03:16+00:00"
         },
         {
             "name": "spatie/laravel-permission",
