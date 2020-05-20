@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fafbde0eb1fce496ae78c801beaa964f",
+    "content-hash": "8c0da73bd7ab4693a2aac4e4abf37f38",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2130,6 +2130,56 @@
                 }
             ],
             "time": "2020-03-29T20:13:32+00:00"
+        },
+        {
+            "name": "sametsahindogan/laravel-jwtredis",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sametsahindogan/laravel-jwtredis.git",
+                "reference": "474ccb27f5efd55bc9cf6283c255d4dc0556e5e7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sametsahindogan/laravel-jwtredis/zipball/474ccb27f5efd55bc9cf6283c255d4dc0556e5e7",
+                "reference": "474ccb27f5efd55bc9cf6283c255d4dc0556e5e7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2",
+                "predis/predis": "^1.1",
+                "sametsahindogan/response-object-creator": "1.0.2",
+                "spatie/laravel-permission": "^3.3",
+                "tymon/jwt-auth": "1.0.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "RedisCache": "Sametsahindogan\\JWTRedis\\Facades\\RedisCache"
+                    },
+                    "providers": [
+                        "Sametsahindogan\\JWTRedis\\JWTRedisServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sametsahindogan\\JWTRedis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "sametsahindogan",
+                    "email": "sametsahindogan@gmail.com"
+                }
+            ],
+            "description": "This package allows JWT-authenticated users to be stored and management in Redis with their roles, permissions, statuses and anything you want.",
+            "time": "2020-03-16T09:50:10+00:00"
         },
         {
             "name": "sametsahindogan/response-object-creator",

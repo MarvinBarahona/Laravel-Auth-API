@@ -19,6 +19,7 @@ Para inicial el proyecto, se debe clonar y configurar como cualquier proyecto La
 El archivo .env además debe incluir:
 * La variable JWT_SECRET, requerido por la librería jwt-auth. Se usará para firmar los JWT creados.
 * Configurar los datos de conexión de Redis. Para este ejemplo, se usó una [instancia local](documentation/redis/Instalar%20Local.md), por lo que se configuró las variables REDIS_HOST y REDIS_PORT.
+* Agregar o modificar las variables: _CACHE_DRIVER=redis_ y _REDIS_CLIENT=predis_
 
 El proyecto además incluye la [creación de usuarios](database/seeds/PermissionsAndUsersSeeder.php) de prueba, así que se deben correr las migraciones y los seeds con el comando: `php artisan migrate:fresh --seed`.
 

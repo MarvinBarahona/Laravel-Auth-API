@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Spatie\Permission\PermissionServiceProvider::class,
+        Sametsahindogan\JWTRedis\JWTRedisServiceProvider::class,
 
         /*
          * Application Service Providers...
