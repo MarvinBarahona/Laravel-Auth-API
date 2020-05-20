@@ -22,7 +22,8 @@
 								"auth",
 								"me"
 							]
-						}
+						},
+						"description": "Obtener la información del usuario actualmente logueado."
 					},
 					"response": []
 				},
@@ -55,12 +56,27 @@
 								"auth",
 								"refresh"
 							]
-						}
+						},
+						"description": "Refresca un token.\r\n\r\nContiene un test que setea el token para las siguientes peticiones."
 					},
 					"response": []
 				},
 				{
 					"name": "Auth - Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "396f02b2-b3ce-42fb-951e-ca31fe48d17a",
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    pm.environment.unset(\"token\");\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -73,12 +89,13 @@
 								"auth",
 								"logout"
 							]
-						}
+						},
+						"description": "Cerrar sesión: inhabilita un token.\r\n\r\nTiene un test que elimina el token del ambiente."
 					},
 					"response": []
 				},
 				{
-					"name": "Auth - Login",
+					"name": "Auth - Login General",
 					"event": [
 						{
 							"listen": "test",
@@ -118,6 +135,98 @@
 								"auth",
 								"login"
 							]
+						},
+						"description": "Autenticación de un usuario con rol _general_.\r\n\r\nContiene un test que setea el token para las siguientes peticiones."
+					},
+					"response": []
+				},
+				{
+					"name": "Auth - Login Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e1d08861-3247-40d2-afe7-b84eda0aeb17",
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"token\", jsonData.data.access_token);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"admin@example.com\",\n\t\"password\": \"zPGbKq9MLWjnG17lCxLZ\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{poc-lavarel-auth-server}}/auth/login",
+							"host": [
+								"{{poc-lavarel-auth-server}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Autenticación de un usuario con rol _admin_.\r\n\r\nContiene un test que setea el token para las siguientes peticiones."
+					},
+					"response": []
+				},
+				{
+					"name": "Auth - Login Super Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "78de793b-3b6e-4017-b709-5084083ef2fa",
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"token\", jsonData.data.access_token);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"superadmin@example.com\",\n\t\"password\": \"i381laUnznz931eRpTC8\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{poc-lavarel-auth-server}}/auth/login",
+							"host": [
+								"{{poc-lavarel-auth-server}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
 						}
 					},
 					"response": []
@@ -141,7 +250,8 @@
 							"path": [
 								"algo"
 							]
-						}
+						},
+						"description": "Para acceder a esta ruta es necesario tener el permiso _listar algo_"
 					},
 					"response": []
 				},
@@ -184,7 +294,8 @@
 							"path": [
 								"algo"
 							]
-						}
+						},
+						"description": "Para acceder a esta ruta es necesario tener el permiso _eliminar algo_"
 					},
 					"response": []
 				}

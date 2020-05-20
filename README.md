@@ -29,6 +29,18 @@ Para arrancar el proyecto, se ejecuta el comando:
 
 ## Probar el proyecto
 El proyecto incluye [los archivos usados](documentation/postman) para realizar pruebas unitarias con Postman.
+Se incluyen endpoints para probar la autenticación, y endpoints de prueba para probar la autorización. En el comentario de cada request de la colección de Postman se incluye el permisos asociado al mismo. Los usuario tienen asignado:
+* _Rol general_: listar.
+* _Rol admin_: crear, eliminar.
+* _Rol superadmin_: todos los permisos
+
+El [ambiente de Postman](documentation/postman/Local%20-%20POC%20Laravel%20Auth.postman_environment.json) incluye la variable _token_, usada en el método de autenticación de todas las rutas que requiere un Bearer token como Header. Esta configuración (del método de autorización) se realizó sobre [la colección](documentation/postman/POC%20Laravel%20Auth.postman_collection.json), y es heredada por las requests. 
 
 ## Desarrollo
 El proyecto ha sido desarrollado usando [Gitflow](https://datasift.github.io/gitflow/IntroducingGitFlow.html). Se configuró la herramienta [Girkraken](https://support.gitkraken.com/git-workflows-and-extensions/git-flow/) para facilitar esta gestión.
+
+## TODO's:
+* Retornar error por token inválido en el logout.
+* Gestión de errores.
+* Endpoints para verificar permisos, roles.
+* Corregir error con el método "me"
