@@ -301,6 +301,31 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Chequear permiso",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{poc-lavarel-auth-server}}/check/permiso?permiso=crear algo",
+					"host": [
+						"{{poc-lavarel-auth-server}}"
+					],
+					"path": [
+						"check",
+						"permiso"
+					],
+					"query": [
+						{
+							"key": "permiso",
+							"value": "crear algo"
+						}
+					]
+				},
+				"description": "Comprueba si el usuario tiene el permiso solicitado."
+			},
+			"response": []
 		}
 	],
 	"auth": {
