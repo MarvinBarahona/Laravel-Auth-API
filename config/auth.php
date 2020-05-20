@@ -42,7 +42,7 @@ return [
         ],
 
         'api' => [
-            'driver' => 'jwt',
+            'driver' => 'jwt_redis_guard',
             'provider' => 'users',
         ],
 
@@ -67,7 +67,7 @@ return [
 
     'providers' => [
         'users' => [
-            'driver' => 'eloquent',
+            'driver' => 'jwt_redis_user_provider',
             'model' => App\User::class,
         ],
 

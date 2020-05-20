@@ -5,13 +5,13 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
+use Sametsahindogan\JWTRedis\Traits\JWTRedisHasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
-    use HasRoles;
+    use JWTRedisHasRoles;
 
     /**
      * The attributes that are mass assignable.
