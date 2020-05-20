@@ -52,7 +52,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth' => \Sametsahindogan\JWTRedis\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
@@ -62,5 +62,9 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'refreshable' => \Sametsahindogan\JWTRedis\Http\Middleware\Refreshable::class,
+        'role' => \Sametsahindogan\JWTRedis\Http\Middleware\RoleMiddleware::class,
+        'permission' => \Sametsahindogan\JWTRedis\Http\Middleware\PermissionMiddleware::class,
+        'role_or_permission' => \Sametsahindogan\JWTRedis\Http\Middleware\RoleOrPermissionMiddleware::class
     ];
 }

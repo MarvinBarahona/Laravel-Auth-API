@@ -1,79 +1,46 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# POC Laravel API Rest Auth
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Este proyecto es una prueba de conceptos, donde se implemementa el paquete [laravel-jwtredis](https://github.com/sametsahindogan/laravel-jwtredis), además de los paquetes:
+* [laravel-permission](https://github.com/spatie/laravel-permission): Manejo de tablas y lógica para autenticación de usuarios.
+* [jwt-auth](https://github.com/tymondesigns/jwt-auth): Implementación de JWT.
+* [predis](https://github.com/nrk/predis): Gestión de conexiones a Redis.
+* [response-object-creator](https://github.com/sametsahindogan/response-object-creator): Constructor de respuestas de la API. Necesario para laravel-jwtredis.
 
-## About Laravel
+Se usó como base un proyecto de Laravel 7, y se busca obtener una API que permite la autenticación y autorización de usuarios, con gestión de Redis para la gestión de sesiones.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Base de datos
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Se recomienda tener una base de datos limpia con un usuario de base de datos creado para el proyecto. El proyecto incluye un [script para creación de BD](documentation/db-setup/DB%20Setup.sql), que se usa para crear una base de datos limpia y un usuario.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Ejecutar el proyecto
 
-## Learning Laravel
+Para inicial el proyecto, se debe clonar y configurar como cualquier proyecto Laravel: crear un archivo .env y configurar la base de datos, con la base de datos y el usuario creados con el script del proyecto o unos creados por su propia cuenta.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+El archivo .env además debe incluir:
+* La variable JWT_SECRET, requerido por la librería jwt-auth. Se usará para firmar los JWT creados.
+* Configurar los datos de conexión de Redis. Para este ejemplo, se usó una [instancia local](documentation/redis/Instalar%20Local.md), por lo que se configuró las variables REDIS_HOST y REDIS_PORT.
+* Agregar o modificar las variables: _CACHE_DRIVER=redis_ y _REDIS_CLIENT=predis_
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+El proyecto además incluye la [creación de usuarios](database/seeds/PermissionsAndUsersSeeder.php) de prueba, así que se deben correr las migraciones y los seeds con el comando: `php artisan migrate:fresh --seed`.
 
-## Laravel Sponsors
+Para arrancar el proyecto, se ejecuta el comando:
+`php artisan serve`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
+## Probar el proyecto
+El proyecto incluye [los archivos usados](documentation/postman) para realizar pruebas unitarias con Postman.
+Se incluyen endpoints para probar la autenticación, y endpoints de prueba para probar la autorización. En el comentario de cada request de la colección de Postman se incluye el permisos asociado al mismo. Los usuario tienen asignado:
+* _Rol general_: listar.
+* _Rol admin_: crear, eliminar.
+* _Rol superadmin_: todos los permisos
 
-## Contributing
+El [ambiente de Postman](documentation/postman/Local%20-%20POC%20Laravel%20Auth.postman_environment.json) incluye la variable _token_, usada en el método de autenticación de todas las rutas que requiere un Bearer token como Header. Esta configuración (del método de autorización) se realizó sobre [la colección](documentation/postman/POC%20Laravel%20Auth.postman_collection.json), y es heredada por las requests. 
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Desarrollo
+El proyecto ha sido desarrollado usando [Gitflow](https://datasift.github.io/gitflow/IntroducingGitFlow.html). Se configuró la herramienta [Girkraken](https://support.gitkraken.com/git-workflows-and-extensions/git-flow/) para facilitar esta gestión.
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## TODO's:
+* Retornar error por token inválido en el logout.
+* Gestión de errores.
+* Endpoints para verificar permisos, roles.
+* Corregir error con el método "me"

@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
 
@@ -42,10 +42,10 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'jwt_redis_guard',
             'provider' => 'users',
-            'hash' => false,
         ],
+
     ],
 
     /*
@@ -67,7 +67,7 @@ return [
 
     'providers' => [
         'users' => [
-            'driver' => 'eloquent',
+            'driver' => 'jwt_redis_user_provider',
             'model' => App\User::class,
         ],
 

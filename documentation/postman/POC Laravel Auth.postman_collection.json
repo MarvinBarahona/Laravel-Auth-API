@@ -1,0 +1,339 @@
+{
+	"info": {
+		"_postman_id": "bafe30ab-8f6f-4af1-be82-0a8bdc701b39",
+		"name": "POC Laravel Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Auth - Me",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{poc-lavarel-auth-server}}/auth/me",
+							"host": [
+								"{{poc-lavarel-auth-server}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						},
+						"description": "Obtener la información del usuario actualmente logueado."
+					},
+					"response": []
+				},
+				{
+					"name": "Auth - Refresh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b80d5813-956c-4c78-a9ab-1ae70968f257",
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"token\", jsonData.data.access_token);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{poc-lavarel-auth-server}}/auth/refresh",
+							"host": [
+								"{{poc-lavarel-auth-server}}"
+							],
+							"path": [
+								"auth",
+								"refresh"
+							]
+						},
+						"description": "Refresca un token.\r\n\r\nContiene un test que setea el token para las siguientes peticiones."
+					},
+					"response": []
+				},
+				{
+					"name": "Auth - Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "396f02b2-b3ce-42fb-951e-ca31fe48d17a",
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    pm.environment.unset(\"token\");\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{poc-lavarel-auth-server}}/auth/logout",
+							"host": [
+								"{{poc-lavarel-auth-server}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						},
+						"description": "Cerrar sesión: inhabilita un token.\r\n\r\nTiene un test que elimina el token del ambiente."
+					},
+					"response": []
+				},
+				{
+					"name": "Auth - Login General",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "355335f3-b705-485e-b4ac-3bd62e5a3592",
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"token\", jsonData.data.access_token);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"test@example.com\",\n\t\"password\": \"jyCT8TkggF7h1LkK3kbT\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{poc-lavarel-auth-server}}/auth/login",
+							"host": [
+								"{{poc-lavarel-auth-server}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Autenticación de un usuario con rol _general_.\r\n\r\nContiene un test que setea el token para las siguientes peticiones."
+					},
+					"response": []
+				},
+				{
+					"name": "Auth - Login Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e1d08861-3247-40d2-afe7-b84eda0aeb17",
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"token\", jsonData.data.access_token);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"admin@example.com\",\n\t\"password\": \"zPGbKq9MLWjnG17lCxLZ\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{poc-lavarel-auth-server}}/auth/login",
+							"host": [
+								"{{poc-lavarel-auth-server}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Autenticación de un usuario con rol _admin_.\r\n\r\nContiene un test que setea el token para las siguientes peticiones."
+					},
+					"response": []
+				},
+				{
+					"name": "Auth - Login Super Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "78de793b-3b6e-4017-b709-5084083ef2fa",
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"token\", jsonData.data.access_token);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"superadmin@example.com\",\n\t\"password\": \"i381laUnznz931eRpTC8\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{poc-lavarel-auth-server}}/auth/login",
+							"host": [
+								"{{poc-lavarel-auth-server}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Algo",
+			"item": [
+				{
+					"name": "Listar algo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{poc-lavarel-auth-server}}/algo",
+							"host": [
+								"{{poc-lavarel-auth-server}}"
+							],
+							"path": [
+								"algo"
+							]
+						},
+						"description": "Para acceder a esta ruta es necesario tener el permiso _listar algo_"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear algo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"campo\": \"prueba\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{poc-lavarel-auth-server}}/algo",
+							"host": [
+								"{{poc-lavarel-auth-server}}"
+							],
+							"path": [
+								"algo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar algo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{poc-lavarel-auth-server}}/algo",
+							"host": [
+								"{{poc-lavarel-auth-server}}"
+							],
+							"path": [
+								"algo"
+							]
+						},
+						"description": "Para acceder a esta ruta es necesario tener el permiso _eliminar algo_"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "3f272a01-45fd-48c1-a721-682e8d7b1862",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "47d60661-fd48-452d-b8f0-e26d00a9f53f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
