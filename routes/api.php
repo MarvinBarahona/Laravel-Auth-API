@@ -25,7 +25,7 @@ Route::prefix('auth')->group(function() {
 
 // Rutas de prueba
 Route::prefix('algo')->group(function() {
-    Route::get('/', 'TestController@listarAlgo');
-    Route::post('/', 'TestController@crearAlgo');
-    Route::delete('/', 'TestController@eliminarAlgo');
+    Route::middleware('permission:listar algo')->get('/', 'TestController@listarAlgo');
+    Route::middleware('permission:crear algo')->post('/', 'TestController@crearAlgo');
+    Route::middleware('permission:eliminar algo')->delete('/', 'TestController@eliminarAlgo');
 });
