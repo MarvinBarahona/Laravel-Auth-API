@@ -303,29 +303,60 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Chequear permiso",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{poc-lavarel-auth-server}}/check/permiso?permiso=crear algo",
-					"host": [
-						"{{poc-lavarel-auth-server}}"
-					],
-					"path": [
-						"check",
-						"permiso"
-					],
-					"query": [
-						{
-							"key": "permiso",
-							"value": "crear algo"
-						}
-					]
+			"name": "Chequear",
+			"item": [
+				{
+					"name": "Chequear permiso",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{poc-lavarel-auth-server}}/check/permiso?permiso=listar algo",
+							"host": [
+								"{{poc-lavarel-auth-server}}"
+							],
+							"path": [
+								"check",
+								"permiso"
+							],
+							"query": [
+								{
+									"key": "permiso",
+									"value": "listar algo"
+								}
+							]
+						},
+						"description": "Comprueba si el usuario tiene el permiso solicitado."
+					},
+					"response": []
 				},
-				"description": "Comprueba si el usuario tiene el permiso solicitado."
-			},
-			"response": []
+				{
+					"name": "Chequear rol",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{poc-lavarel-auth-server}}/check/rol?rol=general",
+							"host": [
+								"{{poc-lavarel-auth-server}}"
+							],
+							"path": [
+								"check",
+								"rol"
+							],
+							"query": [
+								{
+									"key": "rol",
+									"value": "general"
+								}
+							]
+						},
+						"description": "Comprueba si el usuario tiene el rol solicitado."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"auth": {

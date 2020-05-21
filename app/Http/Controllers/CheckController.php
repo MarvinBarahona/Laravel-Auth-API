@@ -17,4 +17,14 @@ class CheckController extends Controller
             'otorgado' => $permiso ? Auth::user()->can($permiso) : false
         ]));
     }
+
+    public function rol(){
+        $rol = request('rol');
+
+        return response()->json(new SuccessResult([
+            'usuario' => Auth::user()->name,
+            'rol' => $rol,
+            'otorgado' => $rol ? Auth::user()->hasRole($rol) : false
+        ]));
+    }
 }

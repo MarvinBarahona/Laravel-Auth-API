@@ -32,4 +32,5 @@ Route::prefix('algo')->group(function() {
 
 Route::prefix('check')->middleware('auth')->group(function(){
     Route::get('/permiso', 'CheckController@permiso');
+    Route::get('/rol', 'CheckController@rol');
 });
