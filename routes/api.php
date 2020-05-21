@@ -29,3 +29,8 @@ Route::prefix('algo')->group(function() {
     Route::middleware('permission:crear algo')->post('/', 'TestController@crearAlgo');
     Route::middleware('permission:eliminar algo')->delete('/', 'TestController@eliminarAlgo');
 });
+
+Route::prefix('check')->middleware('auth')->group(function(){
+    Route::get('/permiso', 'CheckController@permiso');
+    Route::get('/rol', 'CheckController@rol');
+});
